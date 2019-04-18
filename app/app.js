@@ -1,5 +1,7 @@
-const app = angular.module('todoApp', [])
+'use strict'
 
-app.controller('myCtrl', ($scope) => {
-    $scope.msg = "hello world!"
+const app = angular.module('todoApp', ['ngRoute', 'todoApp.mainView', 'todoApp.loginView'])
+
+app.config(function ($routeProvider) {
+    $routeProvider.otherwise({redirectTo: '/'})
 })

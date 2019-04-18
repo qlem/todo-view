@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
-<body>
-    <div ng-app="todoApp" ng-controller="myCtrl">
-        <p>{{ msg }}</p>
-    </div>
-</body>
+<body ng-app="todoApp">
+<div ng-view></div>
 <script src="lib/angular/angular.min.js"></script>
+<script src="lib/angular-route/angular-route.min.js"></script>
 <script src="app.js"></script>
+<script src="mainView/mainView.js"></script>
+<script src="loginView/loginView.js"></script>
+</body>
 </html>
