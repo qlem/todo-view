@@ -1,0 +1,29 @@
+{
+  "name": "todo-view",
+  "version": "1.0.0",
+  "description": "TODO View",
+  "scripts": {
+    "postinstall": "npm run copy-libs",
+    "copy-libs": "cp -r ./node_modules/angular ./node_modules/angular-route ./app/lib/.",
+    "start": "http-server ./app -a localhost -p 8080 -c -1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qlem/todo-view.git"
+  },
+  "author": "qlem",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qlem/todo-view/issues"
+  },
+  "homepage": "https://github.com/qlem/todo-view#readme",
+  "dependencies": {
+    "angular": "^1.7.8",
+    "angular-route": "^1.7.8",
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "http-server": "^0.11.1"
+  }
+}
