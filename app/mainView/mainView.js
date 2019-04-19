@@ -8,12 +8,16 @@ angular.module('todoApp.mainView', ['ngRoute'])
         controller: 'mainCtrl',
         resolve: {
             'isLogged': function ($cookies, $location, $http) {
-                const token = $cookies.get('token')
-                if (token) {
-                    $http.defaults.headers.common.token = token
-                } else {
-                    $location.path('/login')
-                }
+                return new Promise((resolve, reject) => {
+                    const token = $cookies.get('token')
+                    if (token) {
+                        $http.defaults.headers.common.token = token
+                        resolve()
+                    } else {
+                        $location.path('/login')
+                        reject()
+                    }
+                })
             }
         }
     })
