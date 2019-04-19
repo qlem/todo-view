@@ -12,7 +12,9 @@ app.config(function ($routeProvider, $httpProvider) {
     $httpProvider.interceptors.push(function ($q, $location) {
         return {
             'responseError': function (error) {
-                $location.path('/login')
+                if (error.status === 401) {
+                    $location.path('/login')
+                }
                 return $q.reject(error)
             }
         }
