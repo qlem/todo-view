@@ -1,2 +1,7 @@
-<h2>Main View</h2>
-<p>{{ msg }}</p>
+<div>
+    <h2>Main View</h2>
+    <div ng-repeat="task in tasks">
+        <div>{{ task.title }}</div>
+        <div>{{ task.content }}</div>
+    </div>
+</div>

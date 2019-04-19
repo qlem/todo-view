@@ -4,8 +4,8 @@
   "description": "TODO View",
   "scripts": {
     "postinstall": "npm run copy-libs",
-    "copy-libs": "cp -r ./node_modules/angular ./node_modules/angular-route ./app/lib/.",
-    "start": "http-server ./app -a localhost -p 8080 -c -1"
+    "copy-libs": "cp -r ./node_modules/angular ./node_modules/angular-route ./node_modules/angular-cookies ./app/lib/.",
+    "start": "http-server ./app -a localhost -p 8080 -c-1"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/qlem/todo-view#readme",
   "dependencies": {
     "angular": "^1.7.8",
+    "angular-cookies": "^1.7.8",
     "angular-route": "^1.7.8",
     "moment": "^2.24.0"
   },
