@@ -1,0 +1,33 @@
+<div>
+    <h2>Create Task</h2>
+    <input type="text" placeholder="title" ng-model="task.title">
+    <input type="text" placeholder="content" ng-model="task.content">
+
+    <datepicker datepicker-class="datepicker" date-format="MM/dd/yyyy">
+        <input ng-model="task.deadline"/>
+    </datepicker>
+
+    <select ng-model="task.owner">
+        <option ng-repeat="user in users" value="{{ user }}">{{ user }}</option>
+    </select>
+    <div>
+        <label>
+            <input type="radio" ng-model="task.priority" value="low">
+            low
+        </label>
+        <label>
+            <input type="radio" ng-model="task.priority" value="medium">
+            medium
+        </label>
+        <label>
+            <input type="radio" ng-model="task.priority" value="high">
+            high
+        </label>
+        <label>
+            <input type="radio" ng-model="task.priority" value="critical">
+            critical
+        </label>
+    </div>
+    <div ng-click='addTask()'>Add Task</div>
+    <div ng-click='goBack()'>Go Back</div>
+</div>

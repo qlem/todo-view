@@ -40,7 +40,7 @@ angular.module('todoApp.loginView', ['ngRoute'])
                 password: $scope.password
             }
         }).then(response => {
-            // TODO indicate to the user that he can proceed to login
+            // TODO indicate to the user to proceed to login
         }).catch(err => {
             console.error('Cannot proceed to sign up')
             console.error(err)

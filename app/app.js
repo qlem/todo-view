@@ -3,8 +3,10 @@
 const app = angular.module('todoApp', [
     'ngRoute',
     'ngCookies',
+    '720kb.datepicker',
     'todoApp.mainView',
-    'todoApp.loginView'
+    'todoApp.loginView',
+    'todoApp.newTaskView'
 ])
 
 app.config(function ($routeProvider, $httpProvider) {
