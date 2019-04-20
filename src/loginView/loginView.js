@@ -1,10 +1,16 @@
 'use strict'
 
-angular.module('todoApp.loginView', ['ngRoute'])
+import angular from 'angular'
+import route from 'angular-route'
+import template from './loginView.html'
+import './loginView.styl'
+
+export default angular.module('app.loginView', [route])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/login', {
-        templateUrl: 'loginView/loginView.html',
+        // templateUrl: 'loginView/loginView.html',
+        template: template,
         controller: 'loginCtrl'
     })
 }])

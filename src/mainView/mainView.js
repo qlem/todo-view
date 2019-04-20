@@ -1,10 +1,16 @@
 'use strict'
 
-angular.module('todoApp.mainView', ['ngRoute'])
+import angular from 'angular'
+import route from 'angular-route'
+import template from './mainView.html'
+import './mainView.styl'
+
+export default angular.module('app.mainView', [route])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
-        templateUrl: 'mainView/mainView.html',
+        // templateUrl: 'mainView/mainView.html',
+        template: template,
         controller: 'mainCtrl',
         resolve: {
             'isLogged': function ($cookies, $location, $http) {

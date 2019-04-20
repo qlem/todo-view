@@ -1,10 +1,16 @@
 'use strict'
 
-angular.module('todoApp.newTaskView', ['ngRoute'])
+import angular from 'angular'
+import route from 'angular-route'
+import template from './newTaskView.html'
+import './newTaskView.styl'
+
+export default angular.module('app.newTaskView', [route])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/task/create', {
-        templateUrl: 'newTaskView/newTaskView.html',
+        // templateUrl: 'newTaskView/newTaskView.html',
+        template: template,
         controller: 'newTaskCtrl',
         resolve: {
             'isLogged': function ($cookies, $location, $http) {

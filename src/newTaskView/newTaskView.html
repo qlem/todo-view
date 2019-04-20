@@ -1,11 +1,11 @@
-<div>
+<div class="new-task-view-container">
     <h2>Create Task</h2>
     <input type="text" placeholder="title" ng-model="task.title">
     <input type="text" placeholder="content" ng-model="task.content">
 
-    <datepicker datepicker-class="datepicker" date-format="MM/dd/yyyy">
+    <!-- <datepicker datepicker-class="datepicker" date-format="MM/dd/yyyy">
         <input ng-model="task.deadline"/>
-    </datepicker>
+    </datepicker> -->
 
     <select ng-model="task.owner">
         <option ng-repeat="user in users" value="{{ user }}">{{ user }}</option>
