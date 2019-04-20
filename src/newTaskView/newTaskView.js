@@ -2,10 +2,13 @@
 
 import angular from 'angular'
 import route from 'angular-route'
-import template from './newTaskView.html'
+import moment from 'moment'
+import datePicker from 'angularjs-datepicker/index'
 import './newTaskView.styl'
+import 'angularjs-datepicker/dist/angular-datepicker.min.css'
+import template from './newTaskView.html'
 
-export default angular.module('app.newTaskView', [route])
+export default angular.module('app.newTaskView', [route, datePicker])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/task/create', {
@@ -34,6 +37,8 @@ export default angular.module('app.newTaskView', [route])
         priority: 'medium'
     }
     $scope.users = []
+    $scope.date = moment()
+    $scope.today = moment()
 
     $http.get('http://localhost:3000/account/')
         .then(response => $scope.users = response.data)
@@ -43,7 +48,7 @@ export default angular.module('app.newTaskView', [route])
         })
 
     $scope.addTask = function () {
-        console.log($scope.task)
+        $scope.task.deadline = moment($scope.date, "DD/MM/YYYY")
         $http.post('http://localhost:3000/todo/', {
             data: $scope.task
         }).then(response => {

@@ -3,7 +3,6 @@
 import angular from 'angular'
 import route from 'angular-route'
 import cookies from 'angular-cookies'
-// import datePicker from 'angularjs-datepicker'
 import mainView from './mainView/mainView.js'
 import loginView from './loginView/loginView.js'
 import newTaskView from './newTaskView/newTaskView.js'
@@ -11,7 +10,6 @@ import newTaskView from './newTaskView/newTaskView.js'
 const app = angular.module('app', [
     route,
     cookies,
-    // datePicker,
     mainView.name,
     loginView.name,
     newTaskView.name

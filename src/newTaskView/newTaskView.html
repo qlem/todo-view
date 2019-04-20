@@ -3,12 +3,12 @@
     <input type="text" placeholder="title" ng-model="task.title">
     <input type="text" placeholder="content" ng-model="task.content">
 
-    <!-- <datepicker datepicker-class="datepicker" date-format="MM/dd/yyyy">
-        <input ng-model="task.deadline"/>
-    </datepicker> -->
+    <datepicker class="datepicker-class" date-set="{{ today.toString() }}" date-format="dd/MM/yyyy">
+        <input ng-model="date"/>
+    </datepicker>
 
     <select ng-model="task.owner">
-        <option ng-repeat="user in users" value="{{ user }}">{{ user }}</option>
+        <option type="text" ng-repeat="user in users" value="{{ user }}">{{ user }}</option>
     </select>
     <div>
         <label>
