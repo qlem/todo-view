@@ -1,8 +1,17 @@
 <!DOCTYPE html>
-<html>
-<head></head>
-<body ng-app="app">
-<h1>TODO App</h1>
-<div ng-view></div>
+<html lang="en">
+<head>
+    <title>app</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+<body>
+    <div id="app" ng-app="app">
+        <div id="header">
+            <div>TODO App</div>
+        </div>
+        <div id="content" ng-view></div>
+    </div>
 </body>
 </html>

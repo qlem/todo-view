@@ -4,15 +4,14 @@ import angular from 'angular'
 import route from 'angular-route'
 import moment from 'moment'
 import datePicker from 'angularjs-datepicker/index'
-import './newTaskView.styl'
 import 'angularjs-datepicker/dist/angular-datepicker.min.css'
-import template from './newTaskView.html'
+import template from './newTask.html'
+import './newTask.styl'
 
 export default angular.module('app.newTaskView', [route, datePicker])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/task/create', {
-        // templateUrl: 'newTaskView/newTaskView.html',
         template: template,
         controller: 'newTaskCtrl',
         resolve: {

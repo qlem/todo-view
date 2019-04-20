@@ -1,0 +1,90 @@
+.todo-container
+  height 100%
+
+  .tasks-container
+    display grid
+    grid-template-columns 300px 300px 300px
+    grid-template-rows auto
+    grid-template-areas "pending progress completed"
+    grid-column-gap 20px
+    justify-content center
+
+  .pending-column
+    grid-area pending
+
+  .in-progress-column
+    grid-area progress
+
+  .completed-column
+    grid-area completed
+
+  .state-title
+    margin 20px 0 20px 0
+    font-weight bold
+    font-size 1.3em
+    text-align center
+
+  .task-container
+    background white
+    flex-direction column
+    margin-bottom 20px
+    padding 10px
+    border-radius 10px
+    box-shadow 3px 3px 6px 0 rgba(0, 0, 0, 0.2), -3px -3px 6px 0 rgba(0, 0, 0, 0.2)
+    &:hover
+      cursor pointer
+
+  .task-header
+    display flex
+    border-bottom solid 1px black
+    padding-bottom 5px
+
+  .task-title
+    font-weight bold
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    flex-grow 1
+
+  .task-priority
+    width 40px
+    height 14px
+    background green
+    border-radius 7px
+    flex-shrink 0
+
+  .task-priority-low
+    background blue
+
+  .task-priority-medium
+    background green
+
+  .task-priority-high
+    background orange
+
+  .task-priority-critical
+    background red
+
+  .task-content
+    border-bottom solid 1px black
+    padding 5px 0 5px 0
+
+  .task-footer
+    padding-top 5px
+    display flex
+
+  .task-owner
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    flex-grow 1
+
+  .add-task
+    color #303030
+    font-weight bold
+    display inline-block
+    margin-bottom 20px
+    padding-left 10px
+    &:hover
+      color #4f4f4f
+      cursor pointer

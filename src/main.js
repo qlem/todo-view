@@ -3,9 +3,10 @@
 import angular from 'angular'
 import route from 'angular-route'
 import cookies from 'angular-cookies'
-import mainView from './mainView/mainView.js'
-import loginView from './loginView/loginView.js'
-import newTaskView from './newTaskView/newTaskView.js'
+import mainView from './todoView/todo.js'
+import loginView from './loginView/login.js'
+import newTaskView from './newTaskView/newTask.js'
+import './main.styl'
 
 const app = angular.module('app', [
     route,

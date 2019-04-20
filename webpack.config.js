@@ -1,14 +1,18 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = {
     mode: 'development',
-    entry: './src/app.js',
+    entry: {
+        app: './src/main.js'
+    },
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: './dist'
-   },
+        contentBase: './dist',
+        hot: true
+    },
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist')
@@ -41,6 +45,12 @@ module.exports = {
                     },
                 ],
             },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: [
+                    'file-loader'
+                ]
+            }
         ]
     },
     plugins: [
@@ -50,6 +60,7 @@ module.exports = {
             filename: 'index.html',
             template: './public/index.html',
             // favicon: './public/favicon.ico'
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ],
 }

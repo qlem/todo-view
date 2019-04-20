@@ -2,14 +2,13 @@
 
 import angular from 'angular'
 import route from 'angular-route'
-import template from './loginView.html'
-import './loginView.styl'
+import template from './login.html'
+import './login.styl'
 
 export default angular.module('app.loginView', [route])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/login', {
-        // templateUrl: 'loginView/loginView.html',
         template: template,
         controller: 'loginCtrl'
     })
