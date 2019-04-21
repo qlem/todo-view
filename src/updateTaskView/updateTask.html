@@ -1,0 +1,47 @@
+<div class="update-task-container">
+    <div class="title">Update {{ task.owner }}'s task expected for {{ task.deadline | date: "dd/MM/yyyy" }}</div>
+    <div class="task-description-container">
+        <div class="field-label">Description</div>
+        <div class="task-content">{{ task.content }}</div>
+    </div>
+    <div class="task-state">
+        <div class="field-label">State</div>
+        <label>
+            <input type="radio" ng-model="task.state" value="pending">
+            pending
+        </label>
+        <label>
+            <input type="radio" ng-model="task.state" value="inProgress">
+            in progress
+        </label>
+        <label>
+            <input type="radio" ng-model="task.state" value="finished">
+            completed
+        </label>
+    </div>
+    <div class="task-priority">
+        <div class="field-label">Priority</div>
+        <label>
+            <input type="radio" ng-model="task.priority" value="low">
+            low
+        </label>
+        <label>
+            <input type="radio" ng-model="task.priority" value="medium">
+            medium
+        </label>
+        <label>
+            <input type="radio" ng-model="task.priority" value="high">
+            high
+        </label>
+        <label>
+            <input type="radio" ng-model="task.priority" value="critical">
+            critical
+        </label>
+    </div>
+    <div class="buttons-container">
+        <div class="btn" ng-click='goBack()'>Go back</div>
+        <div class="offset"></div>
+        <div class="btn" ng-click='deleteTask()'>Delete</div>
+        <div class="btn confirm-btn" ng-click='updateTask()'>Confirm</div>
+    </div>
+</div>

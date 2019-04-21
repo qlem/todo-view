@@ -28,8 +28,8 @@ export default angular.module('app.mainView', [route])
     })
 }])
 
-.controller('mainCtrl', ['$scope', '$http', '$location',
-    function ($scope, $http, $location) {
+.controller('mainCtrl', ['$scope', '$http', '$location', '$route',
+    function ($scope, $http, $location, $route) {
     $scope.pending = []
     $scope.inProgress = []
     $scope.finished = []
@@ -69,7 +69,17 @@ export default angular.module('app.mainView', [route])
         }
     }
 
-    $scope.newTask = function () {
+    $scope.newTask = function (state) {
+        $route.updateParams({
+            state: state
+        })
         $location.path('/task/create')
+    }
+
+    $scope.updateTask = function (task) {
+        $route.updateParams({
+            task: task
+        })
+        $location.path('task/update')
     }
 }])

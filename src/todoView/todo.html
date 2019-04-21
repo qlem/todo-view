@@ -1,7 +1,7 @@
 <div class="todo-container">
     <div class="pending-column">
         <div class="state-title">Pending</div>
-        <div ng-repeat="task in pending" class="task-container">
+        <div ng-repeat="task in pending" class="task-container" ng-click="updateTask(task)">
             <div class="task-header">
                 <div class="task-title">{{ task.title }}</div>
                 <div class="task-priority" ng-class="getPriorityClass(task.priority)"></div>
@@ -12,11 +12,11 @@
                 <div class="task-deadline">{{ task.deadline | date: "dd/MM/yyyy" }}</div>
             </div>
         </div>
-        <div class="add-task" ng-click='newTask()'>Add task...</div>
+        <div class="add-task" ng-click="newTask('pending')">Add task...</div>
     </div>
     <div class="in-progress-column">
         <div class="state-title">In Progress</div>
-        <div ng-repeat="task in inProgress" class="task-container">
+        <div ng-repeat="task in inProgress" class="task-container" ng-click="updateTask(task)">
             <div class="task-header">
                 <div class="task-title">{{ task.title }}</div>
                 <div class="task-priority" ng-class="getPriorityClass(task.priority)"></div>
@@ -27,11 +27,11 @@
                 <div class="task-deadline">{{ task.deadline | date: "dd/MM/yyyy" }}</div>
             </div>
         </div>
-        <div class="add-task" ng-click='newTask()'>Add task...</div>
+        <div class="add-task" ng-click="newTask('inProgress')">Add task...</div>
     </div>
     <div class="completed-column">
         <div class="state-title">Completed</div>
-        <div ng-repeat="task in finished" class="task-container">
+        <div ng-repeat="task in finished" class="task-container" ng-click="updateTask(task)">
             <div class="task-header">
                 <div class="task-title">{{ task.title }}</div>
                 <div class="task-priority" ng-class="getPriorityClass(task.priority)"></div>
@@ -42,6 +42,6 @@
                 <div class="task-deadline">{{ task.deadline | date: "dd/MM/yyyy" }}</div>
             </div>
         </div>
-        <div class="add-task" ng-click='newTask()'>Add task...</div>
+        <div class="add-task" ng-click="newTask('finished')">Add task...</div>
     </div>
 </div>

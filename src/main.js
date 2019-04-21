@@ -6,6 +6,7 @@ import cookies from 'angular-cookies'
 import mainView from './todoView/todo.js'
 import loginView from './loginView/login.js'
 import newTaskView from './newTaskView/newTask.js'
+import updateTaskView from './updateTaskView/updateTask.js'
 import './main.styl'
 
 const app = angular.module('app', [
@@ -13,7 +14,8 @@ const app = angular.module('app', [
     cookies,
     mainView.name,
     loginView.name,
-    newTaskView.name
+    newTaskView.name,
+    updateTaskView.name
 ])
 
 app.config(function ($routeProvider, $httpProvider) {

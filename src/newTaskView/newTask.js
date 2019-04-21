@@ -10,7 +10,7 @@ import './newTask.styl'
 
 export default angular.module('app.newTaskView', [route, datePicker])
 
-.config(['$routeProvider', function ($routeProvider) {
+.config(['$routeProvider', function ($routeProvider, $route) {
     $routeProvider.when('/task/create', {
         template: template,
         controller: 'newTaskCtrl',
@@ -31,9 +31,11 @@ export default angular.module('app.newTaskView', [route, datePicker])
     })
 }])
 
-.controller('newTaskCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+.controller('newTaskCtrl', ['$scope', '$http', '$location', '$routeParams',
+    function ($scope, $http, $location, $routeParams) {
     $scope.task = {
-        priority: 'medium'
+        priority: 'medium',
+        state: $routeParams.state
     }
     $scope.users = []
     $scope.date = moment()
@@ -51,10 +53,8 @@ export default angular.module('app.newTaskView', [route, datePicker])
         $http.post('http://localhost:3000/todo/', {
             data: $scope.task
         }).then(response => {
-            // TODO indicate to the user that the new task is successfully added
-            $scope.task = {
-                priority: 'medium',
-            }
+            // TODO inform the user
+            $scope.goBack()
         }).catch(err => {
             console.error('Cannot create a new task')
             console.error(err)
@@ -62,6 +62,7 @@ export default angular.module('app.newTaskView', [route, datePicker])
     }
 
     $scope.goBack = function () {
+        $location.search({})
         $location.path('/')
     }
 }])
