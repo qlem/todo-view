@@ -18,12 +18,12 @@
   "homepage": "https://github.com/qlem/todo-view#readme",
   "dependencies": {
     "angular": "^1.7.8",
+    "angular-animate": "^1.7.8",
     "angular-cookies": "^1.7.8",
-    "angular-messages": "^1.7.8",
     "angular-route": "^1.7.8",
     "angularjs-datepicker": "^2.1.23",
-    "moment": "^2.24.0",
-    "ng-toast": "^2.0.0"
+    "angularjs-toaster": "^3.0.0",
+    "moment": "^2.24.0"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^2.0.1",

@@ -28,8 +28,8 @@ export default angular.module('app.updateTaskView', [route])
     })
 }])
 
-.controller('updateTaskCtrl', ['$scope', '$http', '$location', '$route', '$routeParams',
-    function ($scope, $http, $location, $route, $routeParams) {
+.controller('updateTaskCtrl', ['$scope', '$http', '$location', '$route', '$routeParams', 'toaster',
+    function ($scope, $http, $location, $route, $routeParams, toaster) {
     $scope.task = $routeParams.task
 
     $scope.deleteTask = function () {
@@ -37,12 +37,22 @@ export default angular.module('app.updateTaskView', [route])
             params: {
                 id: $scope.task._id
             }
-        }).then(response => {
-            // TODO inform the user
+        }).then(() => {
+            toaster.pop({
+                type: 'success',
+                title: 'Task deleted',
+                body: 'Task successfully deleted',
+                timeout: 3000
+            })
             $scope.goBack()
         }).catch(err => {
             console.error('Cannot delete task')
-            console.error(err)
+            if (err.data && err.status) {
+                console.error('Http error status: ' + err.status)
+                console.error('Http error data: ' + err.data)
+            } else {
+                console.error(err)
+            }
         })
     }
 
@@ -53,12 +63,22 @@ export default angular.module('app.updateTaskView', [route])
                 state: $scope.task.state,
                 priority: $scope.task.priority
             }
-        }).then(response => {
-            // TODO inform the user
+        }).then(() => {
+            toaster.pop({
+                type: 'success',
+                title: 'Task updated',
+                body: 'Task successfully updated',
+                timeout: 3000
+            })
             $scope.goBack()
         }).catch(err => {
             console.error('Cannot update task')
-            console.error(err)
+            if (err.data && err.status) {
+                console.error('Http error status: ' + err.status)
+                console.error('Http error data: ' + err.data)
+            } else {
+                console.error(err)
+            }
         })
     }
 

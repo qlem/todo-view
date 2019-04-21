@@ -31,8 +31,8 @@ export default angular.module('app.newTaskView', [route, datePicker])
     })
 }])
 
-.controller('newTaskCtrl', ['$scope', '$http', '$location', '$routeParams',
-    function ($scope, $http, $location, $routeParams) {
+.controller('newTaskCtrl', ['$scope', '$http', '$location', '$routeParams', 'toaster',
+    function ($scope, $http, $location, $routeParams, toaster) {
     $scope.task = {
         priority: 'medium',
         state: $routeParams.state
@@ -52,12 +52,22 @@ export default angular.module('app.newTaskView', [route, datePicker])
         $scope.task.deadline = moment($scope.date, "DD/MM/YYYY")
         $http.post('http://localhost:3000/todo/', {
             data: $scope.task
-        }).then(response => {
-            // TODO inform the user
+        }).then(() => {
+            toaster.pop({
+                type: 'success',
+                title: 'New task added',
+                body: 'New task successfully added',
+                timeout: 3000
+            })
             $scope.goBack()
         }).catch(err => {
             console.error('Cannot create a new task')
-            console.error(err)
+            if (err.data && err.status) {
+                console.error('Http error status: ' + err.status)
+                console.error('Http error data: ' + err.data)
+            } else {
+                console.error(err)
+            }
         })
     }
 

@@ -15,10 +15,11 @@ export default angular.module('app.loginView', [route])
     })
 }])
 
-.controller('loginCtrl', ['$scope', '$http', '$location', '$cookies',
-    function ($scope, $http, $location, $cookies) {
+.controller('loginCtrl', ['$scope', '$http', '$location', '$cookies', 'toaster',
+    function ($scope, $http, $location, $cookies, toaster) {
     $scope.username = ''
     $scope.password = ''
+
     $scope.signIn = function () {
         $http.post('http://localhost:3000/account/sign/in', {
             data: {
@@ -35,20 +36,48 @@ export default angular.module('app.loginView', [route])
             $location.path('/')
         }).catch(err => {
             console.error('Cannot proceed to sign in')
-            console.error(err)
+            if (err.data && err.status) {
+                console.error('Http error status: ' + err.status)
+                console.error('Http error data: ' + err.data)
+                toaster.pop({
+                    type: 'error',
+                    title: 'Cannot logged in',
+                    body: err.data,
+                    timeout: 3000
+                })
+            } else {
+                console.error(err)
+            }
         })
     }
+
     $scope.signUp = function () {
         $http.post('http://localhost:3000/account/sign/up', {
             data: {
                 name: $scope.username,
                 password: $scope.password
             }
-        }).then(response => {
-            // TODO inform the user
+        }).then(() => {
+            toaster.pop({
+                type: 'success',
+                title: 'Account created',
+                body: 'You can now proceed to logged in',
+                timeout: 3000
+            })
         }).catch(err => {
             console.error('Cannot proceed to sign up')
-            console.error(err)
+            if (err.data && err.status) {
+                console.error('Http error status: ' + err.status)
+                console.error('Http error data: ' + err.data)
+                toaster.pop({
+                    type: 'error',
+                    title: 'Cannot create account',
+                    body: err.data,
+                    timeout: 3000
+                })
+            } else {
+                console.error(err)
+            }
         })
     }
 }])

@@ -12,6 +12,10 @@
             <div>TODO App</div>
         </div>
         <div id="content" ng-view></div>
+        <toaster-container toaster-options="{
+        'time-out': 3000,
+        'close-button': true
+        }"></toaster-container>
     </div>
 </body>
 </html>
