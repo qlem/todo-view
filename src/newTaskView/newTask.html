@@ -1,16 +1,15 @@
 <div class="new-task-container">
-    <div>Create Task</div>
-    <input type="text" placeholder="title" ng-model="task.title">
-    <input type="text" placeholder="content" ng-model="task.content">
-
-    <datepicker class="datepicker-class" date-set="{{ today.toString() }}" date-format="dd/MM/yyyy">
-        <input ng-model="date"/>
-    </datepicker>
-
+    <div class="title">Create a new task</div>
+    <div class="field-label">Title</div>
+    <input class="task-title" type="text" placeholder="A hard task" ng-model="task.title">
+    <div class="field-label">Content</div>
+    <textarea class="task-content" rows="5" placeholder="Do it, friend !" ng-model="task.content"></textarea>
+    <div class="field-label">Owner</div>
     <select ng-model="task.owner">
-        <option type="text" ng-repeat="user in users" value="{{ user }}">{{ user }}</option>
+        <option ng-repeat="user in users" value="{{ user }}">{{ user }}</option>
     </select>
-    <div>
+    <div class="task-priority">
+        <div class="field-label">Priority</div>
         <label>
             <input type="radio" ng-model="task.priority" value="low">
             low
@@ -28,6 +27,14 @@
             critical
         </label>
     </div>
-    <div ng-click='addTask()'>Add Task</div>
-    <div ng-click='goBack()'>Go Back</div>
+    <div class="task-deadline">
+        <div class="field-label">Deadline</div>
+        <datepicker class="datepicker-container" date-set="{{ today.toString() }}" date-format="dd/MM/yyyy">
+            <input ng-model="date"/>
+        </datepicker>
+    </div>
+    <div class="buttons-container">
+        <div class="btn" ng-click='goBack()'>Go back</div>
+        <div class="btn confirm-btn" ng-click='addTask()'>Confirm</div>
+    </div>
 </div>

@@ -52,6 +52,9 @@ export default angular.module('app.newTaskView', [route, datePicker])
             data: $scope.task
         }).then(response => {
             // TODO indicate to the user that the new task is successfully added
+            $scope.task = {
+                priority: 'medium',
+            }
         }).catch(err => {
             console.error('Cannot create a new task')
             console.error(err)
