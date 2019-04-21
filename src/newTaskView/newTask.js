@@ -10,7 +10,7 @@ import './newTask.styl'
 
 export default angular.module('app.newTaskView', [route, datePicker])
 
-.config(['$routeProvider', function ($routeProvider, $route) {
+.config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/task/create', {
         template: template,
         controller: 'newTaskCtrl',

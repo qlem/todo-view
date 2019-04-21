@@ -3,6 +3,7 @@
 import angular from 'angular'
 import route from 'angular-route'
 import template from './login.html'
+import moment from 'moment'
 import './login.styl'
 
 export default angular.module('app.loginView', [route])
@@ -25,11 +26,10 @@ export default angular.module('app.loginView', [route])
                 password: $scope.password
             }
         }).then(response => {
-            let date = new Date()
-            date.setTime(date.getTime() + (10 * 24 * 60 * 60 * 1000))
+            const date = moment().add(10, 'days')
             $cookies.put('token', response.data.token, {
                 path: '/',
-                expires: date
+                expires: date.toISOString()
             })
             $http.defaults.headers.common.token = response.data.token
             $location.path('/')
@@ -45,7 +45,7 @@ export default angular.module('app.loginView', [route])
                 password: $scope.password
             }
         }).then(response => {
-            // TODO indicate to the user to proceed to login
+            // TODO inform the user
         }).catch(err => {
             console.error('Cannot proceed to sign up')
             console.error(err)

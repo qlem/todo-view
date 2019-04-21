@@ -1,4 +1,37 @@
 .login-container
-  background orange
-  height 100%
-  overflow auto
+  display inline-block
+  flex-direction column
+  padding 0 20% 0 20%
+
+  .title
+    font-size 1.4em
+    font-weight bold
+    margin 20px 0 5px 0
+
+  .input-container
+    display flex
+    align-items center
+    margin-top 15px
+    .field-label
+      width 120px
+
+  .field-label
+    font-weight bold
+
+  .input-username, .input-password
+    width 150px
+    height min-content
+
+  .buttons-container
+    margin-top 15px
+    display flex
+    justify-content end
+
+  .btn
+    color #4c4c4c
+    &:hover
+      color #212121
+      cursor pointer
+
+  .sign-up-btn
+    margin-left 15px
