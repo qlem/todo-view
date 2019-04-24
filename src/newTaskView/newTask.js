@@ -9,8 +9,15 @@ import moment from 'moment'
 import template from './newTask.html'
 import './newTask.styl'
 
+/**
+ * Module that represents the view for adding a new task.
+ */
 export default angular.module('app.newTaskView', [route, datePicker])
 
+/**
+ * Configures the router service. Loads that view if the path corresponding to '/task/create'.
+ * Checks if the user is logged in. If the user is not logged in, redirect to '/login'.
+ */
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/task/create', {
         template: template,
@@ -21,6 +28,9 @@ export default angular.module('app.newTaskView', [route, datePicker])
     })
 }])
 
+/**
+ * Controller of the new task view.
+ */
 .controller('newTaskCtrl', ['$scope', '$http', '$location', '$routeParams', 'toaster',
     function ($scope, $http, $location, $routeParams, toaster) {
     $scope.task = {
@@ -31,6 +41,9 @@ export default angular.module('app.newTaskView', [route, datePicker])
     $scope.date = moment()
     $scope.today = moment()
 
+    /**
+     * HTTP request that fetch the names of the users.
+     */
     $http.get('http://localhost:3000/account/')
         .then(response => $scope.users = response.data)
         .catch(err => {
@@ -43,6 +56,9 @@ export default angular.module('app.newTaskView', [route, datePicker])
             }
         })
 
+    /**
+     * HTTP request that adds a new task. If succeeds, a toast is displayed.
+     */
     $scope.addTask = function () {
         $scope.task.deadline = moment($scope.date, "DD/MM/YYYY")
         $http.post('http://localhost:3000/todo/', {
@@ -66,6 +82,9 @@ export default angular.module('app.newTaskView', [route, datePicker])
         })
     }
 
+    /**
+     * Function to go back.
+     */
     $scope.goBack = function () {
         $location.search({})
         $location.path('/')

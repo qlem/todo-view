@@ -5,8 +5,15 @@ import route from 'angular-route'
 import template from './login.html'
 import './login.styl'
 
+/**
+ * Module that represents the login view.
+ */
 export default angular.module('app.loginView', [route])
 
+/**
+ * Configures the router service. Loads that view if the path corresponding to '/login'.
+ * Checks if the user is not logged in. If the user is already logged in, redirect to '/'.
+ */
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/login', {
         template: template,
@@ -26,11 +33,19 @@ export default angular.module('app.loginView', [route])
     })
 }])
 
+/**
+ * Controller of the login view.
+ */
 .controller('loginCtrl', ['$scope', '$http', '$location', 'toaster', 'AuthService',
     function ($scope, $http, $location, toaster, AuthService) {
     $scope.username = ''
     $scope.password = ''
 
+    /**
+     * SignIn function. Proceeds to the user authentication. If the request succeeds, the API responds
+     * by sending a valid token. Then, the token is stores into a cookie and sets in the header of
+     * any next request through the AuthService.
+     */
     $scope.signIn = function () {
         $http.post('http://localhost:3000/account/sign/in', {
             data: {
@@ -57,6 +72,10 @@ export default angular.module('app.loginView', [route])
         })
     }
 
+    /**
+     * SignUp function. Allows to the user to create a new account. Once the new account is created,
+     * the user can login.
+     */
     $scope.signUp = function () {
         $http.post('http://localhost:3000/account/sign/up', {
             data: {
