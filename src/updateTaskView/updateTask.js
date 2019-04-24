@@ -33,7 +33,8 @@ export default angular.module('app.updateTaskView', [route])
     $scope.task = $routeParams.task
 
     /**
-     * HTTP request for delete the selected task. If succeed, a toast is displayed.
+     * Function that performs a HTTP request to delete the selected task.
+     * If succeed, a toast is displayed.
      */
     $scope.deleteTask = function () {
         $http.delete('http://localhost:3000/todo/', {
@@ -60,7 +61,8 @@ export default angular.module('app.updateTaskView', [route])
     }
 
     /**
-     * HTTP request for update the selected task. If succeed, a toast is displayed.
+     * Function that performs a HTTP request to update the selected task.
+     * If succeed, a toast is displayed.
      */
     $scope.updateTask = function() {
         $http.put('http://localhost:3000/todo/', {

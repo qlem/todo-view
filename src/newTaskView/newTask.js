@@ -57,7 +57,8 @@ export default angular.module('app.newTaskView', [route, datePicker])
         })
 
     /**
-     * HTTP request that adds a new task. If succeeds, a toast is displayed.
+     * Function that performs a HTTP request to adds a new task.
+     * If succeeds, a toast is displayed.
      */
     $scope.addTask = function () {
         $scope.task.deadline = moment($scope.date, "DD/MM/YYYY")
