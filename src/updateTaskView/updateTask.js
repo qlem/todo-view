@@ -4,7 +4,7 @@ import angular from 'angular'
 import route from 'angular-route'
 import template from './updateTask.html'
 import './updateTask.styl'
-import isLoggedIn from "../isLogged"
+import isLoggedIn from '../isLogged'
 
 export default angular.module('app.updateTaskView', [route])
 

@@ -4,7 +4,7 @@ import angular from 'angular'
 import route from 'angular-route'
 import datePicker from 'angularjs-datepicker/index'
 import 'angularjs-datepicker/dist/angular-datepicker.min.css'
-import isLoggedIn from './../isLogged.js'
+import isLoggedIn from '../isLogged'
 import moment from 'moment'
 import template from './newTask.html'
 import './newTask.styl'
@@ -35,7 +35,12 @@ export default angular.module('app.newTaskView', [route, datePicker])
         .then(response => $scope.users = response.data)
         .catch(err => {
             console.error('Cannot get users names')
-            console.error(err)
+            if (err.data && err.status) {
+                console.error('Http error status: ' + err.status)
+                console.error('Http error data: ' + err.data)
+            } else {
+                console.error(err)
+            }
         })
 
     $scope.addTask = function () {

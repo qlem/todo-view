@@ -2,7 +2,7 @@
 
 import angular from 'angular'
 import route from 'angular-route'
-import isLoggedIn from './../isLogged.js'
+import isLoggedIn from '../isLogged'
 import template from './todo.html'
 import './todo.styl'
 
@@ -43,7 +43,12 @@ export default angular.module('app.todoView', [route])
         })
         .catch(err => {
             console.error('Cannot get tasks')
-            console.error(err)
+            if (err.data && err.status) {
+                console.error('Http error status: ' + err.status)
+                console.error('Http error data: ' + err.data)
+            } else {
+                console.error(err)
+            }
         })
 
     $scope.getPriorityClass = function (priority) {

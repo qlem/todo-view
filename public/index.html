@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
 </head>
 <body>
-    <div id="app" ng-app="app" ng-controller="mainCtrl">
-        <div id="header">
+    <div id="app" ng-app="app">
+        <div id="header" ng-controller="logoutCtrl">
             <div class="app-title">TODO App</div>
             <div class="logout-btn" ng-if="isLoggedIn" ng-click="logout()">logout</div>
         </div>

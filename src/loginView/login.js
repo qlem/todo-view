@@ -11,14 +11,17 @@ export default angular.module('app.loginView', [route])
     $routeProvider.when('/login', {
         template: template,
         controller: 'loginCtrl',
-        resolve: function (AuthService) {
-            return new Promise((resolve, reject) => {
-                if (AuthService.isLoggedIn()) {
-                    reject()
-                } else {
-                    resolve()
-                }
-            })
+        resolve: {
+            isNotLogged: function ($location, AuthService) {
+                return new Promise((resolve, reject) => {
+                    if (AuthService.isLoggedIn()) {
+                        $location.path('/')
+                        reject()
+                    } else {
+                        resolve()
+                    }
+                })
+            }
         }
     })
 }])

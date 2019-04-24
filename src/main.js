@@ -38,15 +38,6 @@ app.config(function ($routeProvider, $httpProvider) {
     })
 })
 
-.controller('mainCtrl', ['$scope', 'AuthService', function ($scope, AuthService) {
-    $scope.logout = function () {
-        AuthService.logout()
-    }
-    $scope.$watch(AuthService.isLoggedIn, function (isLoggedIn) {
-        $scope.isLoggedIn = isLoggedIn
-    })
-}])
-
 .factory('AuthService', ['$http', '$location', '$cookies', function ($http, $location, $cookies) {
     let isLoggedIn = false
     const token = $cookies.get('token')
@@ -75,4 +66,13 @@ app.config(function ($routeProvider, $httpProvider) {
             return isLoggedIn
         }
     }
+}])
+
+.controller('logoutCtrl', ['$scope', 'AuthService', function ($scope, AuthService) {
+    $scope.logout = function () {
+        AuthService.logout()
+    }
+    $scope.$watch(AuthService.isLoggedIn, function (isLoggedIn) {
+        $scope.isLoggedIn = isLoggedIn
+    })
 }])
