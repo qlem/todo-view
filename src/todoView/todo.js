@@ -2,33 +2,23 @@
 
 import angular from 'angular'
 import route from 'angular-route'
+import isLoggedIn from './../isLogged.js'
 import template from './todo.html'
 import './todo.styl'
 
-export default angular.module('app.mainView', [route])
+export default angular.module('app.todoView', [route])
 
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
         template: template,
-        controller: 'mainCtrl',
+        controller: 'todoCtrl',
         resolve: {
-            'isLogged': function ($cookies, $location, $http) {
-                return new Promise((resolve, reject) => {
-                    const token = $cookies.get('token')
-                    if (token) {
-                        $http.defaults.headers.common.token = token
-                        resolve()
-                    } else {
-                        $location.path('/login')
-                        reject()
-                    }
-                })
-            }
+            isLoggedIn: isLoggedIn
         }
     })
 }])
 
-.controller('mainCtrl', ['$scope', '$http', '$location', '$route',
+.controller('todoCtrl', ['$scope', '$http', '$location', '$route',
     function ($scope, $http, $location, $route) {
     $scope.pending = []
     $scope.inProgress = []

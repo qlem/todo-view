@@ -3,7 +3,6 @@
 import angular from 'angular'
 import route from 'angular-route'
 import template from './login.html'
-import moment from 'moment'
 import './login.styl'
 
 export default angular.module('app.loginView', [route])
@@ -11,12 +10,21 @@ export default angular.module('app.loginView', [route])
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/login', {
         template: template,
-        controller: 'loginCtrl'
+        controller: 'loginCtrl',
+        resolve: function (AuthService) {
+            return new Promise((resolve, reject) => {
+                if (AuthService.isLoggedIn()) {
+                    reject()
+                } else {
+                    resolve()
+                }
+            })
+        }
     })
 }])
 
-.controller('loginCtrl', ['$scope', '$http', '$location', '$cookies', 'toaster',
-    function ($scope, $http, $location, $cookies, toaster) {
+.controller('loginCtrl', ['$scope', '$http', '$location', 'toaster', 'AuthService',
+    function ($scope, $http, $location, toaster, AuthService) {
     $scope.username = ''
     $scope.password = ''
 
@@ -27,12 +35,7 @@ export default angular.module('app.loginView', [route])
                 password: $scope.password
             }
         }).then(response => {
-            const date = moment().add(10, 'days')
-            $cookies.put('token', response.data.token, {
-                path: '/',
-                expires: date.toISOString()
-            })
-            $http.defaults.headers.common.token = response.data.token
+            AuthService.login(response.data.token)
             $location.path('/')
         }).catch(err => {
             console.error('Cannot proceed to sign in')

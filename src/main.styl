@@ -22,16 +22,27 @@ body
 
 #header
   background #006aff
-  font-size 2em
-  font-weight 900
-  color wheat
   border-bottom solid 1px black
-  height 80px
+  height 50px
   z-index 1
-  div
-    padding 20px 0 0 20px
+  display flex
+  align-items center
+
+  .app-title
+    font-size 2em
+    font-weight 900
+    color wheat
+    padding-left 20px
+    flex-grow 1
+
+  .logout-btn
+    color #232323
+    margin-right 20px
+    &:hover
+      color: #c1c1c1
+      cursor pointer
 
 #content
   background #ccdddd
-  height calc(100% - 80px)
+  height calc(100% - 50px)
   overflow auto

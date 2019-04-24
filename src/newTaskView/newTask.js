@@ -2,9 +2,10 @@
 
 import angular from 'angular'
 import route from 'angular-route'
-import moment from 'moment'
 import datePicker from 'angularjs-datepicker/index'
 import 'angularjs-datepicker/dist/angular-datepicker.min.css'
+import isLoggedIn from './../isLogged.js'
+import moment from 'moment'
 import template from './newTask.html'
 import './newTask.styl'
 
@@ -15,18 +16,7 @@ export default angular.module('app.newTaskView', [route, datePicker])
         template: template,
         controller: 'newTaskCtrl',
         resolve: {
-            'isLogged': function ($cookies, $location, $http) {
-                return new Promise((resolve, reject) => {
-                    const token = $cookies.get('token')
-                    if (token) {
-                        $http.defaults.headers.common.token = token
-                        resolve()
-                    } else {
-                        $location.path('/login')
-                        reject()
-                    }
-                })
-            }
+            isLoggedIn: isLoggedIn
         }
     })
 }])
