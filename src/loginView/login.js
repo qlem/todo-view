@@ -17,19 +17,7 @@ export default angular.module('app.loginView', [route])
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/login', {
         template: template,
-        controller: 'loginCtrl',
-        resolve: {
-            isNotLogged: function ($location, AuthService) {
-                return new Promise((resolve, reject) => {
-                    if (AuthService.isLoggedIn()) {
-                        $location.path('/')
-                        reject()
-                    } else {
-                        resolve()
-                    }
-                })
-            }
-        }
+        controller: 'loginCtrl'
     })
 }])
 
