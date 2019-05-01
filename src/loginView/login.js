@@ -12,7 +12,6 @@ export default angular.module('app.loginView', [route])
 
 /**
  * Configures the router service. Loads that view if the path corresponding to '/login'.
- * Checks if the user is not logged in. If the user is already logged in, redirect to '/'.
  */
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/login', {
